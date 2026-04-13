@@ -1,0 +1,15 @@
+# Virtual Environment
+.venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Database files (ignore large DB)
+*.db
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
