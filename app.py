@@ -2,9 +2,35 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
+import os
+import sqlite3
 
 from inference.predict_freight import load_model, predict_freight_cost
 from inference.predict_invoice_flag import predict_invoice_flag
+
+def create_database():
+    db_path = "data/inventory.db"
+    
+    # Create 'data' folder if not exists
+    os.makedirs("data", exist_ok=True)
+    
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    
+    # Example table (modify according to your project)
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS inventory (
+        id INTEGER PRIMARY KEY,
+        item_name TEXT,
+        quantity INTEGER,
+        price REAL
+    )
+    """)
+    
+    conn.commit()
+    conn.close()
+
+create_database()
 
 # -----------------------------------
 # Page Configuration
